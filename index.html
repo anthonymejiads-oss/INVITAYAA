@@ -2,15 +2,99 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Invitación</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invitación 💛</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #111;
+      font-family: Arial, sans-serif;
+      color: #fff;
+    }
+    .card {
+      background: #000;
+      border-radius: 16px;
+      padding: 20px;
+      max-width: 320px;
+      text-align: center;
+    }
+    img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 22px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    #yes {
+      background: #ffd000;
+      color: #000;
+      font-weight: bold;
+    }
+    #no {
+      background: #333;
+      color: #fff;
+    }
+  </style>
 </head>
-<body style="text-align:center; font-family: Arial; background:#fff;">
-  
-  <h1>🎉 Estás Invitado 🎉</h1>
-  <p>Muy pronto más detalles</p>
 
-  <img src="MINION.jfif" alt="Invitación" style="max-width:90%; border-radius:12px;">
+<body>
+  <div class="card">
+    <img src="minion.jpg" alt="imagen">
+    <h3 id="question">¿Quieres ser mi San Valentín? 💛</h3>
 
+    <div class="buttons" id="buttons">
+      <button id="yes">Sí</button>
+      <button id="no">No</button>
+    </div>
+
+    <h2 id="final" style="display:none;color:#ffd000;">
+      YAII 💛<br>Ya sabía que dirías que sí 🥰
+    </h2>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('no');
+    const yesBtn = document.getElementById('yes');
+    const question = document.getElementById('question');
+    const final = document.getElementById('final');
+    const buttons = document.getElementById('buttons');
+
+    let count = 0;
+    const frases = [
+      '¿Segura que no? 😢',
+      'Piénsalo bien 🥺',
+      'Ándale di que sí 💛',
+      'Ya no hay opción 😈'
+    ];
+
+    noBtn.onclick = () => {
+      count++;
+      yesBtn.style.transform = `scale(${1 + count * 0.2})`;
+      question.textContent = frases[Math.min(count - 1, frases.length - 1)];
+      if (count >= 4) noBtn.style.display = 'none';
+    };
+
+    yesBtn.onclick = () => {
+      buttons.style.display = 'none';
+      question.style.display = 'none';
+      final.style.display = 'block';
+    };
+  </script>
 </body>
 </html>
